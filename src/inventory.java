@@ -2,9 +2,8 @@ import java.util.Scanner;
 import java.util.HashMap;
 
 
-public class inventory {
+public class Inventory {
     HashMap<String, Integer> inventory;
-    public String name;
 
     public void createInventory() {
         this.inventory = new HashMap<>();
@@ -27,7 +26,7 @@ public class inventory {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        inventory userInventory = new inventory();
+        Inventory userInventory = new Inventory();
         System.out.println("Welcome to your personal inventory management!");
         userInventory.createInventory();
         System.out.println("Your inventory is currently empty. Would you like to add to it? [Y/N]");
@@ -74,7 +73,7 @@ public class inventory {
                             System.out.print("> ");
                             String updatedProductCountStr = scanner.nextLine();
                             int updatedProductCount = Integer.parseInt(updatedProductCountStr);
-                            userInventory.inventory.put(updatedProduct, updatedProductCount);
+                            userInventory.updateInventory(updatedProduct, updatedProductCount);
                         }
                         else {
                             System.out.println("Product not apart of inventory!");
@@ -85,7 +84,7 @@ public class inventory {
                         System.out.print("> ");
                         String removedProduct = scanner.nextLine();
                         if (userInventory.inventory.containsKey(removedProduct)) {
-                            userInventory.inventory.remove(removedProduct);
+                            userInventory.removeInventory(removedProduct);
                         }
                         else {
                             System.out.println("Product not apart of inventory!");
