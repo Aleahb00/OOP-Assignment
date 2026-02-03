@@ -16,8 +16,12 @@ public static void main(String[] args) {
         System.out.println("Quantity-");
         System.out.print("> ");
         String productCountstr = scanner.nextLine();
-        int productCount = Integer.parseInt(productCountstr);
-        userInventory.addInventory(productName, productCount);
+        try {
+            int productCount = Integer.parseInt(productCountstr);
+            userInventory.addInventory(productName, productCount);
+        } catch (NumberFormatException e) {
+            System.out.println("Must enter a number!");
+        }
         userInventory.inventory.forEach((key, value) -> {
             System.out.println("Inventory- \n  Item: " + key + "  " + "Quantity: " + value);
         });
@@ -38,8 +42,12 @@ public static void main(String[] args) {
                 System.out.println("Quantity-");
                 System.out.print("> ");
                 String newProductCountStr = scanner.nextLine();
-                int newProductCount = Integer.parseInt(newProductCountStr);
-                userInventory.addInventory(newProductName, newProductCount);
+                try {
+                    int newProductCount = Integer.parseInt(newProductCountStr);
+                    userInventory.addInventory(newProductName, newProductCount);
+                } catch (NumberFormatException e) {
+                    System.out.println("Must enter a number!");
+                }
             }
             else if (action.equals("edit")) {
                 System.out.println("What product would you like to edit?");
@@ -49,6 +57,7 @@ public static void main(String[] args) {
                     System.out.println("Enter new product count.");
                     System.out.print("> ");
                     String updatedProductCountStr = scanner.nextLine();
+
                     int updatedProductCount = Integer.parseInt(updatedProductCountStr);
                     userInventory.updateInventory(updatedProduct, updatedProductCount);
                 }
@@ -79,6 +88,9 @@ public static void main(String[] args) {
     }
     else if(choice.equals("N")) {
         System.out.println("Exiting program...");
+    }
+    else {
+        System.out.println("error... closing program.");
     }
 
 }
